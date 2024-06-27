@@ -1,0 +1,9 @@
+<nav>
+  <ul>
+    <li><a routerLink="/login" routerLinkActive="active" *ngIf="!authService.loggedIn">Login</a></li>
+    <li><a routerLink="/register" routerLinkActive="active" *ngIf="!authService.loggedIn">Register</a></li>
+    <li><a routerLink="/portfolio" routerLinkActive="active" *ngIf="authService.loggedIn">Portfolio</a></li>
+    <li><a (click)="authService.logout()" *ngIf="authService.loggedIn">Logout</a></li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

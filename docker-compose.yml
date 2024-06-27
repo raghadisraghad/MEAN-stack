@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - "28017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - resApp
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    command: node server.js
+    networks:
+      - resApp
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: always
+    ports:
+      - "80:80"
+    expose:
+      - 80
+    depends_on:
+      - backend
+    volumes:
+      - frontend:/usr/share/nginx/html  
+    networks:
+      - resApp
+
+volumes:
+  mongo_data: {}
+  frontend:
+
+networks:
+  resApp:
+    driver: bridge

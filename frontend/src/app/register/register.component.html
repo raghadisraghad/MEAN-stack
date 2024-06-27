@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="register-form">
+    <h2>Register</h2>
+    <form (ngSubmit)="register()">
+      <label>
+        Username:
+        <input [(ngModel)]="user.username" name="username" required>
+      </label>
+      <label>
+        Password:
+        <input [(ngModel)]="user.password" type="password" name="password" required>
+      </label>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>

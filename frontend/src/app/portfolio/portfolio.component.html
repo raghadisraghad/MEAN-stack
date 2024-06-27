@@ -1,0 +1,40 @@
+<div class="portfolio-container">
+  <div class="portfolio-list">
+    <h2>Portfolio</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Asset</th>
+        <th>Quantity</th>
+        <th>Value</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Loop through portfolioItems array and display each item -->
+      <tr *ngFor="let item of portfolioItems">
+        <td>{{ item.asset }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.value }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="add-portfolio">
+    <h2>Add Portfolio</h2>
+    <form (ngSubmit)="addAsset(newAsset)">
+      <label>
+        Asset:
+        <input type="text" [(ngModel)]="newAsset.asset" name="asset" required>
+      </label>
+      <label>
+        Quantity:
+        <input type="number" [(ngModel)]="newAsset.quantity" name="quantity" required>
+      </label>
+      <label>
+        Value:
+        <input type="number" [(ngModel)]="newAsset.value" name="value" required>
+      </label>
+      <button type="submit">Add Asset</button>
+    </form>
+  </div>
+</div>
